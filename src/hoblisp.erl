@@ -3,5 +3,5 @@
 
 
 -spec main([string()]) -> ok.
-main(Args) ->
-    io:format("~w~n", [Args]).
+main(_Args) ->
+    epc:echo().

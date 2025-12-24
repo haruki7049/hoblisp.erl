@@ -4,4 +4,4 @@
 
 -spec echo() -> ok.
 echo() ->
-    io:format("hoge").
+    io:format("hoge~n").

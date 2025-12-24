@@ -44,7 +44,6 @@
             nativeBuildInputs = [
               # Runtime
               pkgs.beam28Packages.erlang
-              pkgs.beam28Packages.elixir
 
               # LSP
               pkgs.nil

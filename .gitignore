@@ -10,3 +10,4 @@ result-*
 /ebin/
 /deps/
 hoblisp
+/*.plt

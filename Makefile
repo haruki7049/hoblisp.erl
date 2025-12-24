@@ -1,5 +1,6 @@
 PROJECT = hoblisp
 
-LOCAL_DEPS = epc
+DEPS = epc
+dep_epc = git https://github.com/haruki7049/epc.git main
 
 include erlang.mk

@@ -1,2 +1,7 @@
 -module(epc).
--export([]).
+-export([echo/0]).
+
+
+-spec echo() -> ok.
+echo() ->
+    io:format("hoge").

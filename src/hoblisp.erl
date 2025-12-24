@@ -4,4 +4,5 @@
 
 -spec main([string()]) -> ok.
 main(_Args) ->
+    {ok, _} = application:load(epc),
     epc:echo().

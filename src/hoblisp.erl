@@ -1,6 +1,11 @@
 -module(hoblisp).
 -export([main/1]).
 
+%% Custom types for Lisp structure
+-type hoblisp_atom() :: atom().
+-type hoblisp_list() :: [hoblisp_val()].
+-type hoblisp_val() :: hoblisp_atom() | hoblisp_list().
+
 %% Types borrowed from epc for local specs
 -type parse_result(T) :: {ok, T, string()} | {error, string()}.
 -type parser(T) :: fun((string()) -> parse_result(T)).
@@ -31,7 +36,7 @@ atom() ->
 
 
 %% @doc Parse a list: ( element1 element2 ... )
--spec list_parser() -> parser([any()]).
+-spec list_parser() -> parser(hoblisp_list()).
 list_parser() ->
     fun(Input) ->
             Parser = epc:map(
@@ -46,7 +51,7 @@ list_parser() ->
 
 
 %% @doc Element parser with whitespace handling
--spec element_parser() -> parser(any()).
+-spec element_parser() -> parser(hoblisp_val()).
 element_parser() ->
     fun(Input) ->
             Parser = epc:map(

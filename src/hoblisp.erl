@@ -1,13 +1,19 @@
 -module(hoblisp).
 -export([main/1]).
 
+%% Types borrowed from epc for local specs
+-type parse_result(T) :: {ok, T, string()} | {error, string()}.
+-type parser(T) :: fun((string()) -> parse_result(T)).
+
 
 %% @doc Skip zero or more whitespaces
+-spec whitespace() -> parser(string()).
 whitespace() ->
     epc:many(epc:choice(epc:char($\s), epc:char($\n))).
 
 
 %% @doc Parse a symbol or number (at least one character)
+-spec atom() -> parser(atom()).
 atom() ->
     fun(Input) ->
             %% Use a primitive to ensure at least one character is consumed
@@ -25,6 +31,7 @@ atom() ->
 
 
 %% @doc Parse a list: ( element1 element2 ... )
+-spec list_parser() -> parser([any()]).
 list_parser() ->
     fun(Input) ->
             Parser = epc:map(
@@ -39,6 +46,7 @@ list_parser() ->
 
 
 %% @doc Element parser with whitespace handling
+-spec element_parser() -> parser(any()).
 element_parser() ->
     fun(Input) ->
             Parser = epc:map(
@@ -52,6 +60,7 @@ element_parser() ->
     end.
 
 
+-spec main([string()]) -> ok.
 main(_Args) ->
     Input = "(define (add x y) (+ x y))",
     Result = epc:parse(element_parser(), Input),

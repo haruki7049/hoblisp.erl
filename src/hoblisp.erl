@@ -11,13 +11,13 @@
 -type parser(T) :: fun((string()) -> parse_result(T)).
 
 
-%% @doc Skip zero or more whitespaces
+-doc "Skip zero or more whitespaces".
 -spec whitespace() -> parser(string()).
 whitespace() ->
     epc:many(epc:choice(epc:char($\s), epc:char($\n))).
 
 
-%% @doc Parse a symbol or number (at least one character)
+-doc "Parse a symbol or number (at least one character)".
 -spec atom() -> parser(atom()).
 atom() ->
     fun(Input) ->
@@ -28,14 +28,14 @@ atom() ->
                     {ok, Chars, Rest} = (epc:many(fun([C | R]) when C /= $(, C /= $), C /= $\s, C /= $\n -> {ok, C, R};
                                                      (_) -> {error, "end of atom"}
                                                   end))(T),
-                    {ok, list_to_atom([H | Chars]), Rest};
+                    {ok, list_to_existing_atom([H | Chars]), Rest};
                 _ ->
                     {error, "not an atom"}
             end
     end.
 
 
-%% @doc Parse a list: ( element1 element2 ... )
+-doc "Parse a list: ( element1 element2 ... )".
 -spec list_parser() -> parser(hoblisp_list()).
 list_parser() ->
     fun(Input) ->
@@ -50,7 +50,7 @@ list_parser() ->
     end.
 
 
-%% @doc Element parser with whitespace handling
+-doc "Element parser with whitespace handling".
 -spec element_parser() -> parser(hoblisp_val()).
 element_parser() ->
     fun(Input) ->

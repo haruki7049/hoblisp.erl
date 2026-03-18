@@ -1,13 +1,27 @@
+# Rebar3 (Erlang)
+.rebar3
+_build
+_checkouts
+_vendor
+.eunit
+*.o
+*.beam
+*.plt
+*.swp
+*.swo
+.erlang.cookie
+ebin
+log
+doc
+erl_crash.dump
+.rebar
+logs
+.idea
+*.iml
+rebar3.crashdump
+*~
+
 # Nix
-/.direnv/
+.direnv/
 result*
 result-*
-
-# Erlang
-/.erlang.mk/
-/*.d
-/*.dump
-/ebin/
-/deps/
-hoblisp
-/*.plt

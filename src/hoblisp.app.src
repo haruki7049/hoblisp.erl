@@ -1,0 +1,7 @@
+{application, hoblisp,
+ [{vsn, "0.1.0"},
+  {description, "A hobby lisp dialect"},
+  {modules, [hoblisp]},
+  {applications, [kernel, stdlib, epc]},
+  {licenses, ["mit"]},
+  {links, [{"github", "https://github.com/haruki7049/hoblisp.erl"}]}]}.
